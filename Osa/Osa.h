@@ -1,25 +1,28 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+#include <time.h>
 
-#include <SDL.h>
-#include <glew.h>
-#include <SDL_opengl.h>
-#include <gl\glu.h>
-#include <SDL_image.h>
+#include "Util/FPS.h"
 
 class Osa {
 public:
 	std::string OSA_VERSION = "Osa v1.0.0";
 	int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
 
-	Osa(std::string title, int width, int height);
+	FPS fps;
 
+	bool init(std::string title, int width, int height);
+
+	void loop();
 	void update();
 	void render();
 
+	bool isRunning();
+	void exit();
+
 private:
 	bool run = false;
-	SDL_Window* window;
-	SDL_GLContext context;
+	time_t timer;
 };

@@ -142,11 +142,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Osa\File\File.cpp" />
+    <ClCompile Include="Osa\File\FileSystem.cpp" />
     <ClCompile Include="Osa\Osa.cpp" />
+    <ClCompile Include="Osa\Util\FPS.cpp" />
     <ClCompile Include="PUBG.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Osa\File\File.h" />
+    <ClInclude Include="Osa\File\FileSystem.h" />
     <ClInclude Include="Osa\Osa.h" />
+    <ClInclude Include="Osa\Util\FPS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

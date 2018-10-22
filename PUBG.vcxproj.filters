@@ -21,9 +21,27 @@
     <ClCompile Include="Osa\Osa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Osa\Util\FPS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Osa\File\File.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Osa\File\FileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Osa\Osa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\Util\FPS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\File\File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\File\FileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
