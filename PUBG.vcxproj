@@ -144,15 +144,21 @@
   <ItemGroup>
     <ClCompile Include="Osa\File\File.cpp" />
     <ClCompile Include="Osa\File\FileSystem.cpp" />
+    <ClCompile Include="Osa\Graphics\GUI\Screen.cpp" />
     <ClCompile Include="Osa\Osa.cpp" />
     <ClCompile Include="Osa\Util\FPS.cpp" />
     <ClCompile Include="PUBG.cpp" />
+    <ClCompile Include="PUBG\Game\Entity\Dummy.cpp" />
+    <ClCompile Include="PUBG\Game\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Osa\File\File.h" />
     <ClInclude Include="Osa\File\FileSystem.h" />
+    <ClInclude Include="Osa\Graphics\GUI\Screen.h" />
     <ClInclude Include="Osa\Osa.h" />
     <ClInclude Include="Osa\Util\FPS.h" />
+    <ClInclude Include="PUBG\Game\Entity\Dummy.h" />
+    <ClInclude Include="PUBG\Game\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

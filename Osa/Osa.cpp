@@ -1,5 +1,8 @@
 #include "Osa.h"
 
+Screen* Osa::screen = NULL;
+Screen* Osa::debugScreen = NULL;
+
 bool Osa::init(std::string title, int width, int height){
 	std::cout << "Starting " << OSA_VERSION << std::endl;
 
@@ -15,7 +18,8 @@ void Osa::loop() {
 }
 
 void Osa::update() {
-
+	if (screen != NULL)
+		screen->update();
 }
 
 void Osa::render() {

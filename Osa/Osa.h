@@ -5,10 +5,11 @@
 #include <time.h>
 
 #include "Util/FPS.h"
+#include "Graphics/GUI/Screen.h"
 
 class Osa {
 public:
-	std::string OSA_VERSION = "Osa v1.0.0";
+	std::string OSA_VERSION = "Osa v1.1.0";
 	int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
 
 	FPS fps;
@@ -25,4 +26,7 @@ public:
 private:
 	bool run = false;
 	time_t timer;
+
+	static Screen* screen;
+	static Screen* debugScreen;
 };
