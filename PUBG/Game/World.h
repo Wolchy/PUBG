@@ -13,6 +13,7 @@ public:
 	time_t timerxd, timerXD;
 
 
+
 	std::vector<Dummy*> players;
 
 	World();

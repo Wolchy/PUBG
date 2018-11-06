@@ -7,7 +7,10 @@ World::World()
 
 void World::update()
 {
-	if (STATE == STATE_WAITING) {
+	if (STATE == STATE_IDLE) {
+		//Handle Call from main server to go into waiting :D
+	}
+	else if (STATE == STATE_WAITING) {
 		if (players_ig >= PLAYERS_ON_STARTUP - 1) {
 			STATE = STATE_TIMER;
 			timerxd = time(0);
