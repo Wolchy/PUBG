@@ -24,5 +24,7 @@ int main(int argc, char* argv[]) {
 	while (osa.isRunning())
 		osa.loop();
 
+	system("pause");
+
 	return 1;
 }
