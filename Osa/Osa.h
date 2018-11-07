@@ -4,6 +4,11 @@
 #include <string>
 #include <time.h>
 
+#include <SDL.h>
+#include <glew.h>
+#include <SDL_opengl.h>
+#include <gl\glu.h>
+
 #include "Util/FPS.h"
 #include "Graphics/GUI/Screen.h"
 
@@ -24,8 +29,11 @@ public:
 	void exit();
 
 private:
-	bool run = false;
+	static bool run;
 	time_t timer;
+
+	static SDL_Window* window;
+	static SDL_GLContext context;
 
 	static Screen* screen;
 	static Screen* debugScreen;

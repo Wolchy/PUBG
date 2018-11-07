@@ -94,7 +94,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;opengl32.lib;GLU32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -144,7 +144,9 @@
   <ItemGroup>
     <ClCompile Include="Osa\File\File.cpp" />
     <ClCompile Include="Osa\File\FileSystem.cpp" />
+    <ClCompile Include="Osa\Graphics\Font.cpp" />
     <ClCompile Include="Osa\Graphics\GUI\Screen.cpp" />
+    <ClCompile Include="Osa\Graphics\Shader.cpp" />
     <ClCompile Include="Osa\Network\Network.cpp" />
     <ClCompile Include="Osa\Osa.cpp" />
     <ClCompile Include="Osa\Util\FPS.cpp" />
@@ -155,7 +157,9 @@
   <ItemGroup>
     <ClInclude Include="Osa\File\File.h" />
     <ClInclude Include="Osa\File\FileSystem.h" />
+    <ClInclude Include="Osa\Graphics\Font.h" />
     <ClInclude Include="Osa\Graphics\GUI\Screen.h" />
+    <ClInclude Include="Osa\Graphics\Shader.h" />
     <ClInclude Include="Osa\Network\Network.h" />
     <ClInclude Include="Osa\Osa.h" />
     <ClInclude Include="Osa\Util\FPS.h" />

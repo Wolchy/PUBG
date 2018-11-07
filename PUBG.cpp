@@ -19,12 +19,13 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
-	osa.init("PUBG", 1280, 720);
+	if (!osa.init("PUBG", 1280, 720)){
+		ShowWindow(GetConsoleWindow(), SW_SHOW);
+		system("pause");
+	}
 
 	while (osa.isRunning())
 		osa.loop();
-
-	system("pause");
 
 	return 1;
 }
