@@ -29,11 +29,19 @@ bool Osa::init(std::string title, int width, int height){
 				glClearColor(0.0, 0.0, 0.0, 1.0);
 				glMatrixMode(GL_PROJECTION);
 				glLoadIdentity();
-				gluPerspective(45.0, 1280.0 / 720.0, 1.0, 500.0);
+				glViewport(0, 0, width, height);
+				gluPerspective(60.0, width / height, 0.1, 100.0);
 				glMatrixMode(GL_MODELVIEW);
 				glLoadIdentity();
 
 				std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
+
+				glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+
+				std::string p = SDL_GetBasePath();
+				Font* f = new Font(p + "font.ttf");
+				Shader s = Shader(p + "font.vertex", p + "font.fragment");
+				tv = new TextView("test", 50.f, 50.f, 1.f, glm::vec3(.5f, .5f, .5f), s, f);
 
 				run = true;
 			}
@@ -70,19 +78,26 @@ void Osa::update() {
 			glLoadIdentity();
 			gluPerspective(45.0, SCREEN_WIDTH / SCREEN_HEIGHT, 1.0, 500.0);
 			glMatrixMode(GL_MODELVIEW);
+			glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
 			glLoadIdentity();
 		}
 	}
 }
 
 void Osa::render() {
+	if (difftime(time(0), fps.start) >= 1)
+		SDL_SetWindowTitle(window, std::to_string(fps.fps).c_str());
 	fps.update();
+
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glColor3f(1.0f, 1.0f, 1.0f);
 
 	if (screen != NULL)
 		screen->render();
+
+	
+	tv->render();
 	
 	SDL_GL_SwapWindow(window);
 }

@@ -7,7 +7,7 @@ Font::Font(std::string path)
 		std::cout << "Error: Font: FT_Init_FreeType" << std::endl;
 
 	FT_Face face;
-	if (FT_New_Face(ft, "font.ttf", 0, &face))
+	if (FT_New_Face(ft, path.c_str(), 0, &face))
 		std::cout << "Error: Font: FT_New_Face (Probably Bad path?)" << std::endl;
 
 	FT_Set_Pixel_Sizes(face, 0, 48);
@@ -19,7 +19,7 @@ Font::Font(std::string path)
 
 	for (GLubyte c = 0; c < 128; c++) {
 		if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
-			std::cout << "Error: Font: FT_Load_Char" << std::endl;
+			std::cout << "Error: Font: FT_Load_Char: " << c << std::endl;
 			continue;
 		}
 

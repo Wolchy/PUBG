@@ -9,13 +9,22 @@
 #include <SDL_opengl.h>
 #include <gl\glu.h>
 
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+
 #include "Util/FPS.h"
 #include "Graphics/GUI/Screen.h"
+#include "Graphics/Shader.h"
+
+#include "Graphics/Font.h"
+#include "Graphics/GUI/TextView.h"
 
 class Osa {
 public:
 	std::string OSA_VERSION = "Osa v1.1.0";
 	int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
+
+	TextView* tv;
 
 	FPS fps;
 

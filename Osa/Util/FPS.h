@@ -5,11 +5,11 @@
 class FPS {
 public:
 	int fps = 0;
+	time_t start;
 
 	FPS();
 	void update();
 
 private:
-	time_t start;
 	int frames = 0;
 };

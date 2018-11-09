@@ -80,6 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\Projects\PUBG\PUBG\dependencies\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Projects\PUBG\PUBG\dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,7 +96,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;opengl32.lib;GLU32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;freetype.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,6 +125,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;freetype.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,6 +149,7 @@
     <ClCompile Include="Osa\File\FileSystem.cpp" />
     <ClCompile Include="Osa\Graphics\Font.cpp" />
     <ClCompile Include="Osa\Graphics\GUI\Screen.cpp" />
+    <ClCompile Include="Osa\Graphics\GUI\TextView.cpp" />
     <ClCompile Include="Osa\Graphics\Shader.cpp" />
     <ClCompile Include="Osa\Network\Network.cpp" />
     <ClCompile Include="Osa\Osa.cpp" />
@@ -159,6 +163,7 @@
     <ClInclude Include="Osa\File\FileSystem.h" />
     <ClInclude Include="Osa\Graphics\Font.h" />
     <ClInclude Include="Osa\Graphics\GUI\Screen.h" />
+    <ClInclude Include="Osa\Graphics\GUI\TextView.h" />
     <ClInclude Include="Osa\Graphics\Shader.h" />
     <ClInclude Include="Osa\Network\Network.h" />
     <ClInclude Include="Osa\Osa.h" />

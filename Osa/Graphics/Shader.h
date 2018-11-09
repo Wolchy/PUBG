@@ -1,13 +1,13 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include <SDL.h>
 #include <glew.h>
 #include <SDL_opengl.h>
 #include <gl\glu.h>
-
-#include "../File/File.h"
 
 class Shader {
 public:

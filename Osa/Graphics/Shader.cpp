@@ -2,16 +2,30 @@
 
 Shader::Shader(std::string vertexPath, std::string fragmentPath)
 {
-	File vertexFile = File(vertexPath);
-	File fragmentFile = File(fragmentPath);
+	std::string vertexCode, fragmentCode;
+	std::ifstream vShaderFile, fShaderFile;
 
-	const char* vShaderCode = "";
-	const char* fShaderCode = "";
+	vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
-	if (vertexFile.isGood())
-		vShaderCode = vertexFile.read().c_str();
-	if (fragmentFile.isGood())
-		fShaderCode = fragmentFile.read().c_str();
+	try {
+		vShaderFile.open(vertexPath);
+		fShaderFile.open(fragmentPath);
+		std::stringstream vShaderStream, fShaderStream;
+		vShaderStream << vShaderFile.rdbuf();
+		fShaderStream << fShaderFile.rdbuf();
+		vShaderFile.close();
+		fShaderFile.close();
+
+		vertexCode = vShaderStream.str();
+		fragmentCode = fShaderStream.str();
+	}
+	catch (std::ifstream::failure e) {
+		std::cout << "Error: Shader: Reading File (Bad Path?)" << std::endl;
+	}
+
+	const char* vShaderCode = vertexCode.c_str();
+	const char* fShaderCode = fragmentCode.c_str();
 
 	unsigned int vertex, fragment;
 	int success;
@@ -26,7 +40,7 @@ Shader::Shader(std::string vertexPath, std::string fragmentPath)
 		std::cout << "Error: Shader: Vertex: " << infoLog << std::endl;
 	}
 
-	vertex = glCreateShader(GL_VERTEX_SHADER);
+	fragment = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragment, 1, &fShaderCode, NULL);
 	glCompileShader(fragment);
 	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);

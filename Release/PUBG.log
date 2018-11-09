@@ -1,0 +1,17 @@
+﻿  File.cpp
+  FileSystem.cpp
+  Font.cpp
+e:\projects\pubg\pubg\osa\graphics\font.cpp(41): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
+  Screen.cpp
+  TextView.cpp
+  Shader.cpp
+  Network.cpp
+  Osa.cpp
+  FPS.cpp
+  PUBG.cpp
+  Dummy.cpp
+  World.cpp
+  Generating code
+  All 413 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  PUBG.vcxproj -> E:\Projects\PUBG\Release\PUBG.exe
