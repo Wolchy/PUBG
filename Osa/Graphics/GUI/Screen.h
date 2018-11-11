@@ -6,4 +6,6 @@ public:
 
 	virtual void update();
 	virtual void render();
+
+	virtual void keyup(SDL_Keycode);
 };

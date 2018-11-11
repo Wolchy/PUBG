@@ -169,6 +169,8 @@
     <ClInclude Include="Osa\Osa.h" />
     <ClInclude Include="Osa\Util\FPS.h" />
     <ClInclude Include="PUBG\Game\Entity\Dummy.h" />
+    <ClInclude Include="PUBG\Game\Entity\Player.h" />
+    <ClInclude Include="PUBG\Game\Items\Item.h" />
     <ClInclude Include="PUBG\Game\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -24,8 +24,6 @@ public:
 	std::string OSA_VERSION = "Osa v1.1.0";
 	int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
 
-	TextView* tv;
-
 	FPS fps;
 
 	bool init(std::string title, int width, int height);

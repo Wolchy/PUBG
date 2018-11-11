@@ -36,13 +36,6 @@ bool Osa::init(std::string title, int width, int height){
 
 				std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
 
-				glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
-
-				std::string p = SDL_GetBasePath();
-				Font* f = new Font(p + "font.ttf");
-				Shader s = Shader(p + "font.vertex", p + "font.fragment");
-				tv = new TextView("test", 50.f, 50.f, 1.f, glm::vec3(.5f, .5f, .5f), s, f);
-
 				run = true;
 			}
 			else {
@@ -81,23 +74,24 @@ void Osa::update() {
 			glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
 			glLoadIdentity();
 		}
+		else if (e.type == SDL_KEYUP) {
+			if (screen != NULL)
+				screen->keyup(e.key.keysym.sym);
+		}
 	}
 }
 
 void Osa::render() {
 	if (difftime(time(0), fps.start) >= 1)
 		SDL_SetWindowTitle(window, std::to_string(fps.fps).c_str());
-	fps.update();
 
+	fps.update();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glColor3f(1.0f, 1.0f, 1.0f);
 
 	if (screen != NULL)
 		screen->render();
-
-	
-	tv->render();
 	
 	SDL_GL_SwapWindow(window);
 }

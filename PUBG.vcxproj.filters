@@ -86,5 +86,11 @@
     <ClInclude Include="Osa\Graphics\GUI\TextView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PUBG\Game\Items\Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PUBG\Game\Entity\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
