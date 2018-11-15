@@ -2,22 +2,16 @@
 
 #include <iostream>
 #include <string>
-#include <time.h>
-
 #include <SDL.h>
+#undef main
 #include <glew.h>
 #include <SDL_opengl.h>
 #include <gl\glu.h>
-
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
+class Screen;
 #include "Util/FPS.h"
-#include "Graphics/GUI/Screen.h"
-#include "Graphics/Shader.h"
-
-#include "Graphics/Font.h"
-#include "Graphics/GUI/TextView.h"
 
 class Osa {
 public:
@@ -32,16 +26,20 @@ public:
 	void update();
 	void render();
 
+	void setScreen(Screen* screen);
+	void setServerScreen(Screen* screen);
+	void setServer(bool _isServer);
+
 	bool isRunning();
 	void exit();
 
 private:
 	static bool run;
-	time_t timer;
+	static bool server;
 
-	static SDL_Window* window;
-	static SDL_GLContext context;
+	SDL_Window* window;
+	SDL_GLContext context;
 
 	static Screen* screen;
-	static Screen* debugScreen;
+	static Screen* serverScreen;
 };

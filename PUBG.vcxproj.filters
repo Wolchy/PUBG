@@ -42,13 +42,19 @@
     <ClCompile Include="Osa\Network\Network.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Osa\Graphics\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Osa\Graphics\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Osa\Graphics\GUI\TextView.cpp">
+    <ClCompile Include="PUBG\Graphics\TestScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Osa\Graphics\Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PUBG\Graphics\ServerScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Osa\Util\SplitString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,19 +83,25 @@
     <ClInclude Include="Osa\Network\Network.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Osa\Graphics\Font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Osa\Graphics\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Osa\Graphics\GUI\TextView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PUBG\Game\Items\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PUBG\Game\Entity\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PUBG\Graphics\TestScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\Graphics\Font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PUBG\Graphics\ServerScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\Util\SplitString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

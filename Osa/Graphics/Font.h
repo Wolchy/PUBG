@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 
+#include <glew.h>
 #include <SDL_opengl.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H

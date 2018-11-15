@@ -96,7 +96,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;freetype.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua5.1.lib;lua51.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;freetype.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -125,7 +125,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;freetype.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua5.1.lib;lua51.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;SDL2_image.lib;freetype.lib;glew32.lib;opengl32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,29 +149,33 @@
     <ClCompile Include="Osa\File\FileSystem.cpp" />
     <ClCompile Include="Osa\Graphics\Font.cpp" />
     <ClCompile Include="Osa\Graphics\GUI\Screen.cpp" />
-    <ClCompile Include="Osa\Graphics\GUI\TextView.cpp" />
     <ClCompile Include="Osa\Graphics\Shader.cpp" />
     <ClCompile Include="Osa\Network\Network.cpp" />
     <ClCompile Include="Osa\Osa.cpp" />
     <ClCompile Include="Osa\Util\FPS.cpp" />
+    <ClCompile Include="Osa\Util\SplitString.cpp" />
     <ClCompile Include="PUBG.cpp" />
     <ClCompile Include="PUBG\Game\Entity\Dummy.cpp" />
     <ClCompile Include="PUBG\Game\World.cpp" />
+    <ClCompile Include="PUBG\Graphics\ServerScreen.cpp" />
+    <ClCompile Include="PUBG\Graphics\TestScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Osa\File\File.h" />
     <ClInclude Include="Osa\File\FileSystem.h" />
     <ClInclude Include="Osa\Graphics\Font.h" />
     <ClInclude Include="Osa\Graphics\GUI\Screen.h" />
-    <ClInclude Include="Osa\Graphics\GUI\TextView.h" />
     <ClInclude Include="Osa\Graphics\Shader.h" />
     <ClInclude Include="Osa\Network\Network.h" />
     <ClInclude Include="Osa\Osa.h" />
     <ClInclude Include="Osa\Util\FPS.h" />
+    <ClInclude Include="Osa\Util\SplitString.h" />
     <ClInclude Include="PUBG\Game\Entity\Dummy.h" />
     <ClInclude Include="PUBG\Game\Entity\Player.h" />
     <ClInclude Include="PUBG\Game\Items\Item.h" />
     <ClInclude Include="PUBG\Game\World.h" />
+    <ClInclude Include="PUBG\Graphics\ServerScreen.h" />
+    <ClInclude Include="PUBG\Graphics\TestScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

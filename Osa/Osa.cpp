@@ -1,12 +1,12 @@
 #include "Osa.h"
 
-bool Osa::run = false;
+#include "Graphics/GUI/Screen.h"
 
 Screen* Osa::screen = NULL;
-Screen* Osa::debugScreen = NULL;
+Screen* Osa::serverScreen = NULL;
 
-SDL_Window* Osa::window = NULL;
-SDL_GLContext Osa::context = NULL;
+bool Osa::run = false;
+bool Osa::server = false;
 
 bool Osa::init(std::string title, int width, int height){
 	std::cout << "Starting " << OSA_VERSION << std::endl;
@@ -30,8 +30,9 @@ bool Osa::init(std::string title, int width, int height){
 				glMatrixMode(GL_PROJECTION);
 				glLoadIdentity();
 				glViewport(0, 0, width, height);
-				gluPerspective(60.0, width / height, 0.1, 100.0);
+				gluPerspective(75.0, width / height, 0.0f, 100.0);
 				glMatrixMode(GL_MODELVIEW);
+				glEnable(GL_BLEND);
 				glLoadIdentity();
 
 				std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
@@ -58,25 +59,31 @@ void Osa::loop() {
 void Osa::update() {
 	SDL_Event e;
 
-	if (screen != NULL)
-		screen->update();
+	if (server) {
+		if (serverScreen != NULL)
+			serverScreen->update(*this);
+	}
+	else
+		if (screen != NULL)
+			screen->update(*this);
 
 	while (SDL_PollEvent(&e) != 0) {
 		if (e.type == SDL_QUIT) {
 			exit();
 		}
 		else if (e.type == SDL_WINDOWEVENT) {
-			glClearColor(0.0, 0.0, 0.0, 1.0);
-			glMatrixMode(GL_PROJECTION);
-			glLoadIdentity();
-			gluPerspective(45.0, SCREEN_WIDTH / SCREEN_HEIGHT, 1.0, 500.0);
-			glMatrixMode(GL_MODELVIEW);
-			glm::mat4 projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
-			glLoadIdentity();
+			SDL_GetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
+			glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			gluPerspective(75.0, SCREEN_WIDTH / SCREEN_HEIGHT, 0.0f, 100.0);
 		}
 		else if (e.type == SDL_KEYUP) {
-			if (screen != NULL)
-				screen->keyup(e.key.keysym.sym);
+			if (server) {
+				if (serverScreen != NULL)
+					serverScreen->keyUp(*this, e.key.keysym.sym);
+			}
+			else
+				if (screen != NULL)
+					screen->keyUp(*this, e.key.keysym.sym);
 		}
 	}
 }
@@ -90,10 +97,27 @@ void Osa::render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glColor3f(1.0f, 1.0f, 1.0f);
 
-	if (screen != NULL)
-		screen->render();
+	if (server) {
+		if (serverScreen != NULL)
+			serverScreen->render(*this);
+	}
+	else
+		if (screen != NULL)
+			screen->render(*this);
 	
 	SDL_GL_SwapWindow(window);
+}
+
+void Osa::setScreen(Screen * _screen) {
+	screen = _screen;
+}
+
+void Osa::setServerScreen(Screen * screen) {
+	serverScreen = screen;
+}
+
+void Osa::setServer(bool _isServer) {
+	server = _isServer;
 }
 
 bool Osa::isRunning() {

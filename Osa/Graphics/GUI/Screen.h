@@ -1,11 +1,27 @@
 #pragma once
 
+#include <iostream>
+#include <SDL.h>
+
+#include "../../Osa.h"
+
 class Screen {
 public:
-	Screen();
+	int mouseX, mouseY;
+	std::string id;
+	Screen(std::string);
 
-	virtual void update();
-	virtual void render();
+	virtual void update(Osa);
+	virtual void render(Osa);
 
-	virtual void keyup(SDL_Keycode);
+	virtual void resize(Osa);
+	virtual void keyDown(Osa, SDL_Keycode);
+	virtual void keyUp(Osa, SDL_Keycode);
+	virtual void mouseKeyUp(Osa, SDL_MouseButtonEvent&);
+	virtual void mouseKeyDown(Osa, SDL_MouseButtonEvent&);
+	virtual void mouseScroll(Osa, SDL_MouseWheelEvent&);
+	virtual void mouseMoved(int, int);
+	virtual void event(Osa, SDL_Event);
+
+private:
 };
