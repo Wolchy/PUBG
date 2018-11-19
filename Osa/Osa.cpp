@@ -15,36 +15,45 @@ bool Osa::init(std::string title, int width, int height){
 	SCREEN_HEIGHT = height;
 
 	if (!SDL_Init(SDL_INIT_VIDEO)) {
-		window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
-		if (window != NULL) {
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		if (SDLNet_Init() != -1) {
+			window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
+			if (window != NULL) {
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-			context = SDL_GL_CreateContext(window);
-			if (context != NULL) {
-				glewExperimental = true;
-				GLenum err = glewInit();
+				context = SDL_GL_CreateContext(window);
+				if (context != NULL) {
+					glewExperimental = true;
+					GLenum err = glewInit();
 
-				glClearColor(0.0, 0.0, 0.0, 1.0);
-				glMatrixMode(GL_PROJECTION);
-				glLoadIdentity();
-				glViewport(0, 0, width, height);
-				gluPerspective(75.0, width / height, 0.0f, 100.0);
-				glMatrixMode(GL_MODELVIEW);
-				glEnable(GL_BLEND);
-				glLoadIdentity();
+					if (SDL_GL_SetSwapInterval(1) < 0) {
+						printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+					}
 
-				std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
+					glClearColor(0.0, 0.0, 0.0, 1.0);
+					glMatrixMode(GL_PROJECTION);
+					glLoadIdentity();
+					glViewport(0, 0, width, height);
+					gluPerspective(75.0, width / height, 0.0f, 100.0);
+					glMatrixMode(GL_MODELVIEW);
+					glEnable(GL_BLEND);
+					glLoadIdentity();
 
-				run = true;
+					std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
+
+					run = true;
+				}
+				else {
+					std::cout << "context == NULL: " << SDL_GetError() << std::endl;
+				}
 			}
 			else {
-				std::cout << "context == NULL: " << SDL_GetError() << std::endl;
+				std::cout << "window == NULL: " << SDL_GetError() << std::endl;
 			}
 		}
 		else {
-			std::cout << "window == NULL: " << SDL_GetError() << std::endl;
+			printf("SDLNet could not initialize!SDLNet Error : %s\n", SDLNet_GetError());
 		}
 	}
 
@@ -120,8 +129,23 @@ void Osa::setServer(bool _isServer) {
 	server = _isServer;
 }
 
+Screen * Osa::getScreen()
+{
+	return screen;
+}
+
+Screen * Osa::getServerScreen()
+{
+	return serverScreen;
+}
+
 bool Osa::isRunning() {
 	return run;
+}
+
+bool Osa::isServer()
+{
+	return server;
 }
 
 void Osa::exit() {

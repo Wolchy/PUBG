@@ -9,6 +9,7 @@
 #include <gl\glu.h>
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
+#include <SDL_net.h>
 
 class Screen;
 #include "Util/FPS.h"
@@ -30,7 +31,11 @@ public:
 	void setServerScreen(Screen* screen);
 	void setServer(bool _isServer);
 
+	Screen* getScreen();
+	Screen* getServerScreen();
+
 	bool isRunning();
+	bool isServer();
 	void exit();
 
 private:
