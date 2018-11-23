@@ -10,6 +10,8 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <SDL_net.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 
 class Screen;
 #include "Util/FPS.h"

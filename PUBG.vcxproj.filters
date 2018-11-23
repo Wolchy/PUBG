@@ -48,13 +48,13 @@
     <ClCompile Include="PUBG\Graphics\TestScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Osa\Graphics\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PUBG\Graphics\ServerScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Osa\Util\SplitString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Osa\Graphics\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,13 +95,13 @@
     <ClInclude Include="PUBG\Graphics\TestScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Osa\Graphics\Font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PUBG\Graphics\ServerScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Osa\Util\SplitString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\Graphics\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

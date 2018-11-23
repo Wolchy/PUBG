@@ -2,8 +2,7 @@
 
 TestScreen::TestScreen() : Screen::Screen("testScreen"){}
 
-void TestScreen::update(Osa osa)
-{
+void TestScreen::update(Osa osa) {
 	if (console) {
 		console = false;
 		std::string consoleBuffer;
@@ -41,8 +40,11 @@ void TestScreen::update(Osa osa)
 		network.update();
 }
 
-void TestScreen::keyUp(Osa osa, SDL_Keycode key)
-{
+void TestScreen::render(Osa osa) {
+
+}
+
+void TestScreen::keyUp(Osa osa, SDL_Keycode key) {
 	if (key == SDLK_BACKQUOTE)
 		console = true;
 }

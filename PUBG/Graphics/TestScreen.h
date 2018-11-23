@@ -7,6 +7,9 @@
 #include "../../Osa/Util/SplitString.h"
 #include "../../Osa/Network/Network.h"
 
+#include "../../Osa/Graphics/Shader.h"
+#include "../../Osa/Graphics/Texture.h"
+
 class TestScreen : public Screen {
 public:
 	bool console = false;
@@ -16,6 +19,7 @@ public:
 	TestScreen();
 
 	virtual void update(Osa osa);
+	virtual void render(Osa osa);
 
 	virtual void keyUp(Osa osa, SDL_Keycode key);
 };
