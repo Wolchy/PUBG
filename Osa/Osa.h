@@ -9,9 +9,11 @@
 #include <gl\glu.h>
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
 #include <SDL_net.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <stb_image.h>
 
 class Screen;
 #include "Util/FPS.h"
@@ -22,6 +24,9 @@ public:
 	int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
 
 	FPS fps;
+
+	// timing
+	double deltaTime = 0.0f;	// time between current frame and last frame
 
 	bool init(std::string title, int width, int height);
 
@@ -39,6 +44,7 @@ public:
 	bool isRunning();
 	bool isServer();
 	void exit();
+	SDL_Window* getWindow();
 
 private:
 	static bool run;
@@ -49,4 +55,6 @@ private:
 
 	static Screen* screen;
 	static Screen* serverScreen;
+
+	double delta_last = 0.0f, delta_current = 0.0f;
 };

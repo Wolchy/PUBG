@@ -57,6 +57,9 @@
     <ClCompile Include="Osa\Graphics\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Osa\Graphics\Objects\Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Osa\Osa.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Osa\Graphics\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\Graphics\Objects\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

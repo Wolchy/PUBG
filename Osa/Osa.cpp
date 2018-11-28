@@ -21,7 +21,7 @@ bool Osa::init(std::string title, int width, int height) {
 					window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
 					if (window != NULL) {
 						SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-						SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+						SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 						SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
 						context = SDL_GL_CreateContext(window);
@@ -35,8 +35,9 @@ bool Osa::init(std::string title, int width, int height) {
 							glViewport(0, 0, width, height);
 							gluPerspective(75.0, width / height, 0.0f, 100.0);
 							glMatrixMode(GL_MODELVIEW);
-							glEnable(GL_BLEND);
+							glEnable(GL_DEPTH_TEST);
 							glLoadIdentity();
+							SDL_SetWindowIcon(window, IMG_Load("speedy boi.jpg"));
 
 							std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
 
@@ -95,12 +96,39 @@ void Osa::update() {
 				if (screen != NULL)
 					screen->keyUp(*this, e.key.keysym.sym);
 		}
+		else if (e.type == SDL_KEYDOWN) {
+			if (server) {
+				if (serverScreen != NULL)
+					serverScreen->keyDown(*this, e.key.keysym.sym);
+			}
+			else
+				if (screen != NULL)
+					screen->keyDown(*this, e.key.keysym.sym);
+		}
+		else if (e.type == SDL_MOUSEMOTION) {
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+
+			if (server) {
+				if (serverScreen != NULL)
+					serverScreen->mouseMoved(*this, x, y);
+			}
+			else
+				if (screen != NULL)
+					screen->mouseMoved(*this, x, y);
+		}
 	}
 }
 
 void Osa::render() {
-	if (difftime(time(0), fps.start) >= 1)
-		SDL_SetWindowTitle(window, std::to_string(fps.fps).c_str());
+	delta_last = delta_current;
+	delta_current = SDL_GetPerformanceCounter();
+	deltaTime = (double)((delta_current - delta_last) * 1000 / SDL_GetPerformanceFrequency());
+
+	if (difftime(time(0), fps.start) >= 1) {
+		std::string fuckYouMom = "FPS: " + std::to_string(fps.fps) + " Delta: " + std::to_string(deltaTime);
+		SDL_SetWindowTitle(window, fuckYouMom.c_str());
+	}
 
 	fps.update();
 
@@ -151,4 +179,9 @@ bool Osa::isServer()
 
 void Osa::exit() {
 	run = false;
+}
+
+SDL_Window * Osa::getWindow()
+{
+	return window;
 }

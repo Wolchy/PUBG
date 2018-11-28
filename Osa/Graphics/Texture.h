@@ -12,5 +12,4 @@ public:
 	int w = 0, h = 0;
 
 	Texture(std::string texturePath);
-	Texture(SDL_Surface* surface);
 };

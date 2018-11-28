@@ -8,6 +8,7 @@ public:
 	std::string		name = "null";		//Name
 	std::string		type = "null";		//Is it armor, weapon, or ammo
 	int				size = 0;			//How many in stack
+	int				rarity = 0;			//0 is common 5 is ebic
 };
 
 class Armor : public Item {

@@ -15,7 +15,7 @@ void Screen::mouseKeyDown(Osa, SDL_MouseButtonEvent &event) {}
 
 void Screen::mouseScroll(Osa, SDL_MouseWheelEvent &) {}
 
-void Screen::mouseMoved(int x, int y) {
+void Screen::mouseMoved(Osa, int x, int y) {
 	mouseX = x;
 	mouseY = y;
 }

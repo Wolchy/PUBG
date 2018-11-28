@@ -1,35 +1,15 @@
 #include "Texture.h"
 
-Texture::Texture(std::string texturePath) {
-	SDL_Surface* surface = IMG_Load(texturePath.c_str());
-	if (surface != NULL) {
-		glGenTextures(1, &id);
-		glBindTexture(GL_TEXTURE_2D, id);
-		int mode = GL_RGB;
-		if (surface->format->BitsPerPixel == 4)
-			mode = GL_RGBA;
-		glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		w = surface->w;
-		h = surface->h;
-	} else {
-		std::cout << "Error: Texture: IMG: " << IMG_GetError() << std::endl;
-	}
-}
+#include <stb_image.h>
 
-Texture::Texture(SDL_Surface * surface) {
-	if (surface != NULL) {
+Texture::Texture(std::string texturePath) {
+	int nrChannels;
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char *data = stbi_load(texturePath.c_str(), &w, &h, &nrChannels, 0);
+	if (data) {
 		glGenTextures(1, &id);
 		glBindTexture(GL_TEXTURE_2D, id);
-		int mode = GL_RGB;
-		if (surface->format->BitsPerPixel == 4)
-			mode = GL_RGBA;
-		glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	}
-	else {
-		std::cout << "Error: Texture: surface is null" << std::endl;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 }

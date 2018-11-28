@@ -20,7 +20,7 @@ public:
 	virtual void mouseKeyUp(Osa, SDL_MouseButtonEvent&);
 	virtual void mouseKeyDown(Osa, SDL_MouseButtonEvent&);
 	virtual void mouseScroll(Osa, SDL_MouseWheelEvent&);
-	virtual void mouseMoved(int, int);
+	virtual void mouseMoved(Osa, int, int);
 	virtual void event(Osa, SDL_Event);
 
 private:

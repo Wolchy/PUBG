@@ -148,6 +148,7 @@
     <ClCompile Include="Osa\File\File.cpp" />
     <ClCompile Include="Osa\File\FileSystem.cpp" />
     <ClCompile Include="Osa\Graphics\GUI\Screen.cpp" />
+    <ClCompile Include="Osa\Graphics\Objects\Cube.cpp" />
     <ClCompile Include="Osa\Graphics\Shader.cpp" />
     <ClCompile Include="Osa\Graphics\Texture.cpp" />
     <ClCompile Include="Osa\Network\Network.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Osa\File\File.h" />
     <ClInclude Include="Osa\File\FileSystem.h" />
     <ClInclude Include="Osa\Graphics\GUI\Screen.h" />
+    <ClInclude Include="Osa\Graphics\Objects\Cube.h" />
     <ClInclude Include="Osa\Graphics\Shader.h" />
     <ClInclude Include="Osa\Graphics\Texture.h" />
     <ClInclude Include="Osa\Network\Network.h" />

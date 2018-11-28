@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#define STB_IMAGE_IMPLEMENTATION
 
 #include "Osa/Osa.h"
 
