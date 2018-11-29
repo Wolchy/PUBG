@@ -13,3 +13,18 @@ Texture::Texture(std::string texturePath) {
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 }
+
+int Texture::getID()
+{
+	return id;
+}
+
+int Texture::getWidth()
+{
+	return w;
+}
+
+int Texture::getHeight()
+{
+	return h;
+}

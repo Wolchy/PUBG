@@ -17,6 +17,7 @@
 
 class Screen;
 #include "Util/FPS.h"
+#include "Lua/Lua.h"
 
 class Osa {
 public:
@@ -24,9 +25,8 @@ public:
 	int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 720;
 
 	FPS fps;
-
-	// timing
-	double deltaTime = 0.0f;	// time between current frame and last frame
+	double deltaTime = 0.0f;
+	Lua* lua = NULL;
 
 	bool init(std::string title, int width, int height);
 
@@ -45,6 +45,12 @@ public:
 	bool isServer();
 	void exit();
 	SDL_Window* getWindow();
+	int getScreenWidth();
+	int getScreenHeight();
+	double getDelta();
+	int getFPS();
+	std::string getVersion();
+	Osa* getOsa();
 
 private:
 	static bool run;

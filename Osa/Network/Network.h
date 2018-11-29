@@ -3,13 +3,20 @@
 #include <SDL_net.h>
 #include <time.h>
 #include <chrono>
+#include <vector>
 
 #include "../Osa.h"
 
 struct Client {
-	bool		isFree = true;
 	IPaddress	ip;
 };
+
+struct ClientMessage {
+	std::string	message;
+	IPaddress	ip;
+};
+
+//TODO make update return a vector of strings
 
 class Network {
 public:
@@ -19,9 +26,11 @@ public:
 	const int32_t		PACKET_SIZE = 512;
 	int					PACKET_AMT = 200;
 	bool				DEBUG = false;
+	bool				hasInit = false;
+	bool				forceServer = false;
 
 	int					MAX_CLIENTS = 100;
-	Client*				clients[100];
+	std::vector<Client*>clients;
 	int					clientCount = 0;
 
 	const std::string	MESSAGE_JOIN = "JOIN";
@@ -42,6 +51,7 @@ public:
 	int timedBytesSent = 0, timedBytesRecv = 0;
 	int lastPacketsSent = 0, lastPacketsRecv = 0;
 	int lastBytesSent = 0, lastBytesRecv = 0;
+
 	time_t start;
 	long long ping;
 	std::chrono::time_point<std::chrono::steady_clock> pingTimer;
@@ -49,7 +59,7 @@ public:
 	Network();
 
 	void init(Osa osa);
-	void update();
+	std::vector<ClientMessage> update();
 
 	void sendMessage(std::string message, IPaddress _ip);
 	UDPpacket* allocPacket(int32_t size);
@@ -59,4 +69,33 @@ public:
 	bool isIPRegistered(IPaddress ip);
 	int getIPLoc(IPaddress ip);
 	void kickIP(IPaddress ip);
+
+	IPaddress getIP();
+	long long getPing();
+	void setServerName(std::string name);
+	std::string getServerName();
+	void setServerPort(short port);
+	short getServerPort();
+	void setIsServer(bool isIt);
+	bool getIsServer();
+	int getPacketSize();
+	void setPacketAmt(int amt);
+	int getPacketAmt();
+	void setDebugMode(bool isIt);
+	bool getDebugMode();
+	void setMaxClients(int amt);
+	int getMaxClients();
+	int getClientCount();
+
+	int getTotalPacketsSent();
+	int getTotalPacketsRecv();
+	int getTotalBitsSent();
+	int getTotalBitsRecv();
+	int getTimedPacketsSent();
+	int getTimedPacketsRecv();
+	int getTimedBitsSent();
+	int getTimedBitsRecv();
+
+	std::string getDataFromClientMessage(ClientMessage cm);
+	IPaddress getIPFromClientMessage(ClientMessage cm);
 };

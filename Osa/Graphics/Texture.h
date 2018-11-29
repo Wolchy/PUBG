@@ -12,4 +12,7 @@ public:
 	int w = 0, h = 0;
 
 	Texture(std::string texturePath);
+	int getID();
+	int getWidth();
+	int getHeight();
 };

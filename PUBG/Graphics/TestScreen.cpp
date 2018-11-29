@@ -4,8 +4,8 @@ TestScreen::TestScreen() : Screen::Screen("testScreen"){
 
 }
 
-void TestScreen::update(Osa osa) {
-	float cameraSpeed = speed * osa.deltaTime;
+void TestScreen::update(Osa* osa) {
+	float cameraSpeed = speed * osa->deltaTime;
 	if(w)
 		cameraPos += cameraSpeed * cameraFront;
 	if(s)
@@ -20,39 +20,13 @@ void TestScreen::update(Osa osa) {
 		std::string consoleBuffer;
 		std::getline(std::cin, consoleBuffer);
 
-		//osa.lua.exec(consoleBuffer);
-
-		SplitString ss;
-		std::vector<std::string> s = ss.split(consoleBuffer, " ");
-		if (s[0] == "server")
-			osa.setServer(true);
-		else if (s[0] == "init") {
-			network.init(osa);
-			init = true;
-		}
-		else if (s[0] == "ping") {
-			network.refreshPing(network.ip);
-		}
-		else if (s[0] == "stress") {
-			for (int i = 0; i < std::stoi(s[1]); i++)
-				network.sendMessage(std::to_string(i), network.ip);
-			std::cout << "Done Sending Packets" << std::endl;
-			network.sendMessage("done", network.ip);
-		}
-		else if (s[0] == "test") {
-			network.sendMessage("BIGGESTBOI", network.ip);
-			network.sendMessage("widdle", network.ip);
-			network.sendMessage("none", network.ip);
-		}
-		else {
-			network.sendMessage(consoleBuffer, network.ip);
-		}
+		osa->lua->exec(consoleBuffer);
 	}
 	if (init)
 		network.update();
 }
 
-void TestScreen::render(Osa osa) {
+void TestScreen::render(Osa* osa) {
 	if (!rInit) {
 		for (unsigned int i = 0; i < 10; i++) {
 			cubes[i] = new Cube("sofia carson.png", "basic");
@@ -72,7 +46,7 @@ void TestScreen::render(Osa osa) {
 		glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
 
-	glm::mat4 projection = glm::perspective(glm::radians(fov), (float)osa.SCREEN_WIDTH / (float)osa.SCREEN_HEIGHT, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(fov), (float)osa->SCREEN_WIDTH / (float)osa->SCREEN_HEIGHT, 0.1f, 100.0f);
 	glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
 	// render boxes
@@ -89,20 +63,30 @@ void TestScreen::render(Osa osa) {
 	}
 }
 
-void TestScreen::keyUp(Osa osa, SDL_Keycode key) {
+void TestScreen::keyUp(Osa* osa, SDL_Keycode key) {
 	if (key == SDLK_BACKQUOTE)
 		console = true;
 	if (key == SDLK_ESCAPE)
-		osa.exit();
+		osa->exit();
 	if (key == SDLK_F1) {
-		if (SDL_GetWindowGrab(osa.getWindow())) {
-			SDL_ShowCursor(true);
-			SDL_SetWindowGrab(osa.getWindow(), SDL_FALSE);
+		if (SDL_GetWindowGrab(osa->getWindow())) {
+			SDL_SetRelativeMouseMode(SDL_FALSE);
+			SDL_WarpMouseInWindow(osa->getWindow(), osa->SCREEN_WIDTH / 2, osa->SCREEN_HEIGHT / 2);
 		}
 		else {
-			SDL_ShowCursor(false);
-			SDL_SetWindowGrab(osa.getWindow(), SDL_TRUE);
+			SDL_SetRelativeMouseMode(SDL_TRUE);
 		}
+	}
+	if (key == SDLK_F2) {
+		if (SDL_GL_GetSwapInterval() == 1){
+			if (SDL_GL_SetSwapInterval(0) < 0) {
+				printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+			}
+		}
+		else
+			if (SDL_GL_SetSwapInterval(1) < 0) {
+				printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+			}
 	}
 
 	if (key == SDLK_w)
@@ -115,7 +99,7 @@ void TestScreen::keyUp(Osa osa, SDL_Keycode key) {
 		d = false;
 }
 
-void TestScreen::keyDown(Osa osa, SDL_Keycode key) {
+void TestScreen::keyDown(Osa* osa, SDL_Keycode key) {
 	if (key == SDLK_w)
 		w = true;
 	if (key == SDLK_s)
@@ -126,15 +110,10 @@ void TestScreen::keyDown(Osa osa, SDL_Keycode key) {
 		d = true;
 }
 
-void TestScreen::mouseMoved(Osa osa, int x, int y){
-	mouseX = x;
-	mouseY = y;
-
-	if (SDL_GetWindowGrab(osa.getWindow())) {
-		float centeredX = osa.SCREEN_WIDTH / 2;
-		float centeredY = osa.SCREEN_HEIGHT / 2;
-		float offsetX = x - centeredX;
-		float offsetY = y - centeredY;
+void TestScreen::mouseMoved(Osa* osa, int x, int y){
+	if (SDL_GetWindowGrab(osa->getWindow())) {
+		float offsetX = x;
+		float offsetY = y;
 		offsetX *= sensitivity/10;
 		offsetY *= sensitivity/10;
 		yaw += offsetX;
@@ -150,7 +129,5 @@ void TestScreen::mouseMoved(Osa osa, int x, int y){
 		front.y = sin(glm::radians(pitch));
 		front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 		cameraFront = glm::normalize(front);
-
-		SDL_WarpMouseInWindow(osa.getWindow(), centeredX, centeredY);
 	}
 }

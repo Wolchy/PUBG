@@ -17,6 +17,8 @@
 #include "../../Osa/Graphics/Texture.h"
 #include "../../Osa/Graphics/Objects/Cube.h"
 
+//TODO make camera class
+
 class TestScreen : public Screen {
 public:
 	bool console = false;
@@ -36,15 +38,15 @@ public:
 	float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
 	float pitch = 0.0f;
 	float fov = 75.0f;
-	float sensitivity = 0.5f;
+	float sensitivity = 1.0f;
 	float speed = 0.01f;
 
 	TestScreen();
 
-	virtual void update(Osa osa);
-	virtual void render(Osa osa);
+	virtual void update(Osa* osa);
+	virtual void render(Osa* osa);
 
-	virtual void keyUp(Osa osa, SDL_Keycode key);
-	virtual void keyDown(Osa osa, SDL_Keycode key);
-	virtual void mouseMoved(Osa, int, int);
+	virtual void keyUp(Osa* osa, SDL_Keycode key);
+	virtual void keyDown(Osa* osa, SDL_Keycode key);
+	virtual void mouseMoved(Osa*, int, int);
 };

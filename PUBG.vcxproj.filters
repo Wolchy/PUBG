@@ -60,6 +60,9 @@
     <ClCompile Include="Osa\Graphics\Objects\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Osa\Lua\Lua.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Osa\Osa.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Osa\Graphics\Objects\Cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Osa\Lua\Lua.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

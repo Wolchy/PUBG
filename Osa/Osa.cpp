@@ -38,6 +38,14 @@ bool Osa::init(std::string title, int width, int height) {
 							glEnable(GL_DEPTH_TEST);
 							glLoadIdentity();
 							SDL_SetWindowIcon(window, IMG_Load("speedy boi.jpg"));
+							SDL_SetThreadPriority(SDL_THREAD_PRIORITY_HIGH);
+
+							lua = new Lua();
+							lua->loadOsa(this);
+							lua->loadUtil();
+							lua->loadFileSystem();
+							lua->loadGraphics();
+							lua->loadNetwork();
 
 							std::cout << "OPENGL Version: " << glGetString(GL_VERSION) << std::endl;
 
@@ -72,11 +80,11 @@ void Osa::update() {
 
 	if (server) {
 		if (serverScreen != NULL)
-			serverScreen->update(*this);
+			serverScreen->update(this);
 	}
 	else
 		if (screen != NULL)
-			screen->update(*this);
+			screen->update(this);
 
 	while (SDL_PollEvent(&e) != 0) {
 		if (e.type == SDL_QUIT) {
@@ -90,32 +98,37 @@ void Osa::update() {
 		else if (e.type == SDL_KEYUP) {
 			if (server) {
 				if (serverScreen != NULL)
-					serverScreen->keyUp(*this, e.key.keysym.sym);
+					serverScreen->keyUp(this, e.key.keysym.sym);
 			}
 			else
 				if (screen != NULL)
-					screen->keyUp(*this, e.key.keysym.sym);
+					screen->keyUp(this, e.key.keysym.sym);
 		}
 		else if (e.type == SDL_KEYDOWN) {
 			if (server) {
 				if (serverScreen != NULL)
-					serverScreen->keyDown(*this, e.key.keysym.sym);
+					serverScreen->keyDown(this, e.key.keysym.sym);
 			}
 			else
 				if (screen != NULL)
-					screen->keyDown(*this, e.key.keysym.sym);
+					screen->keyDown(this, e.key.keysym.sym);
 		}
 		else if (e.type == SDL_MOUSEMOTION) {
-			int x, y;
+			int x, y, xx = 0, yy = 0;
 			SDL_GetMouseState(&x, &y);
-
+			x = e.motion.xrel;
+			y = e.motion.yrel;
 			if (server) {
-				if (serverScreen != NULL)
-					serverScreen->mouseMoved(*this, x, y);
+				if (serverScreen != NULL) {
+					serverScreen->mouseMoved(this, x, y);
+					serverScreen->mousePos(this, xx, yy);
+				}
 			}
 			else
-				if (screen != NULL)
-					screen->mouseMoved(*this, x, y);
+				if (screen != NULL) {
+					screen->mouseMoved(this, x, y);
+					screen->mousePos(this, xx, yy);
+				}
 		}
 	}
 }
@@ -137,11 +150,11 @@ void Osa::render() {
 
 	if (server) {
 		if (serverScreen != NULL)
-			serverScreen->render(*this);
+			serverScreen->render(this);
 	}
 	else
 		if (screen != NULL)
-			screen->render(*this);
+			screen->render(this);
 	
 	SDL_GL_SwapWindow(window);
 }
@@ -184,4 +197,34 @@ void Osa::exit() {
 SDL_Window * Osa::getWindow()
 {
 	return window;
+}
+
+int Osa::getScreenWidth()
+{
+	return SCREEN_WIDTH;
+}
+
+int Osa::getScreenHeight()
+{
+	return SCREEN_HEIGHT;
+}
+
+double Osa::getDelta()
+{
+	return deltaTime;
+}
+
+int Osa::getFPS()
+{
+	return fps.fps;
+}
+
+std::string Osa::getVersion()
+{
+	return OSA_VERSION;
+}
+
+Osa * Osa::getOsa()
+{
+	return this;
 }

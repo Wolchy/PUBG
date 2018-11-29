@@ -11,6 +11,6 @@ public:
 
 	ServerScreen();
 	
-	virtual void update(Osa osa);
-	virtual void render(Osa osa);
+	virtual void update(Osa* osa);
+	virtual void render(Osa* osa);
 };

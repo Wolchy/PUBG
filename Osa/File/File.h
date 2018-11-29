@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 class File {
 public:
@@ -15,4 +16,11 @@ public:
 
 private:
 	std::string path;
+};
+
+class SimpleFile {	//Mostly made for easier lua incorperation
+public:
+	bool isGood(std::string path);
+	std::string read(std::string path);
+	bool writeString(std::string path, std::string contents, bool append);
 };
